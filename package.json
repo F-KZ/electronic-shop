@@ -1,0 +1,21 @@
+{
+  "name": "e-commerce2",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "node backend/server.js",
+    "server": "nodemon back/index.js",
+    "client": "npm run dev --prefix front",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "data:import": "node backend/seeder",
+    "data:destroy": "node backend/seeder -d",
+    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend",
+    "generate-toc": "markdown-toc -i readme.md"
+  },
+  "author": " Franck Kanza",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^8.2.2",
+    "re": "^0.1.4"
+  }
+}
