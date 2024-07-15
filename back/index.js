@@ -40,7 +40,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/fausseRoute', (req, res) => {
-    res.send('juste pour voir si ça marche...')
+    res.send(`le mot magique est ${process.env.TOKEN_SECRET}...`)
 })
 
 
