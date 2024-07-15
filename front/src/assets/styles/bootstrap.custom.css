@@ -6414,7 +6414,7 @@ fieldset:disabled .btn {
   text-align: center;
 }
 
-@media( max-width: 1024px){
+@media( max-width: 950px){
    .carousel-indicators {
     background-color:  #fff;
   }

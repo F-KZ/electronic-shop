@@ -1,16 +1,9 @@
-import styles from "./Loader.module.css";
 
-export const Loader = () => {
+ const Loader = () => {
   return (
-    <div className={styles.loader}>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
+    <div className="flex justify-center items-center">
+        <img src='../../../public/spinner.svg' alt='Loading...' />
+        </div>
   );
 };
+ export default Loader

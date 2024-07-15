@@ -2,8 +2,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import GoBackButton from '../components/ReturnButton';
 import { updateCart } from '../utils/cartUtils'
-import { addToCart, removeProduct } from '../slices/cartSlice';
+import { addToCart, removeProduct, resetCart } from '../slices/cartSlice';
 import { FaTrash } from 'react-icons/fa';
+import { useEffect } from 'react'
 
 const CartScreen = () => {
   const navigate = useNavigate()
@@ -27,6 +28,14 @@ const CartScreen = () => {
   }; */
 
   const totalPrice = cartItems.reduce((acc, item) => acc + item.price * item.qty, 0);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      dispatch(resetCart());
+    }, 10 * 60 * 1000); // 20 minutes in milliseconds
+
+    return () => clearTimeout(timer); // Cleanup the timer on component unmount
+  }, [dispatch]);
 
   return (
     <div className="container mx-auto p-4">
@@ -68,7 +77,7 @@ const CartScreen = () => {
                   <div className="w-1/5 text-right">
                     <button
                       className="text-red-600 hover:text-red-800"
-                      onClick={() => removeFromCartHandler(item)}
+                      onClick={() => removeFromCartHandler(item._id)}
                     >
                       <FaTrash/>
                     </button>

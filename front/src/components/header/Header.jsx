@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { FaShoppingCart, FaUser } from 'react-icons/fa';
+import { FaShoppingCart, FaUser, FaHome } from 'react-icons/fa';
 import { logout } from '../../slices/authSlice';
 import ResponsiveMobile from './ResponsiveMobile';
 import logo from '../../../public/images/logo.svg'
@@ -31,11 +31,11 @@ const Header = () => {
             </Link>
           </div>
           <div className="hidden md:flex space-x-8">
-            <Link to="/" className="text-gray-900 hover:text-gray-600">
-              Accueil
+            <Link to="/" className="text-gray-900 hover:text-gray-600 flex gap-2 items-center">
+              Home <FaHome/>
             </Link>
-            <Link to="/about" className="text-gray-900 hover:text-gray-600 flex gap-2 items-center">
-              Panier <FaShoppingCart />
+            <Link to="/cart" className="text-gray-900 hover:text-gray-600 flex gap-2 items-center">
+              Cart <FaShoppingCart />
               {cartItems.length > 0 && (
                 <span className="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-green-100 bg-green-600 rounded-full ml-2">
                   {cartItems.reduce((a, c) => a + c.qty, 0)}
@@ -48,15 +48,15 @@ const Header = () => {
                   {userInfo.name} <FaUser />
                 </Link>
                 <button onClick={logoutHandler} className="text-gray-900 hover:text-gray-600">
-                  Déconnexion
+                  Log Out
                 </button>
               </>
             ) : (
               <Link to="/login" className="text-gray-900 hover:text-gray-600 flex flex-row gap-2 items-center">
-                Inscription <FaUser />
+                Sign In <FaUser />
               </Link>
             )}
-            <Link to="/contact" className="text-gray-900 hover:text-gray-600">
+            <Link to="/" className="text-gray-900 hover:text-gray-600">
               Contact
             </Link>
           </div>

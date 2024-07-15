@@ -7,6 +7,7 @@ import Rating from '../components/Ratings'
 import {  useDispatch } from 'react-redux'
 import { addToCart } from '../slices/cartSlice';
 import { useGetProductDetailsQuery } from '../slices/productApiSlice'
+import Loader from '../components/Loader/Loader';
 
 
 const ProductScreen = () => {
@@ -25,7 +26,7 @@ const ProductScreen = () => {
 
  
 
-  if (isLoading) return <div className="text-center">Loading...</div>;
+  if (isLoading) return <Loader/>;
   if (error) return <div className="text-center text-red-500">An error occurred: {error.message}</div>;
 
  

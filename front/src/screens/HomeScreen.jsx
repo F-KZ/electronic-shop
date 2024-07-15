@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useGetProductsQuery } from '../slices/productApiSlice';
-import Loader from '../components/Loader';
+import  Loader  from '../components/Loader/Loader';
 import Message from '../components/Message';
 import ProductCarousel from '../components/ProductCarousel';
 import Product from '../components/Product';
@@ -27,8 +27,8 @@ const HomeScreen = () => {
           Go Back
         </Link>
       )}
-      {isLoading ? (
-        <Loader />
+      {isLoading || data === 'pending' ? (
+        <Loader/>
       ) : error ? (
         <Message variant='danger'>
           {error?.data?.message || error.error}
