@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // CORS configuration
 app.use(cors({
-    origin: 'http://localhost:5173', // Allow requests from these origins
+    origin: '*', // Allow requests from these origins
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Origin', 'X-Requested-With', 'Accept', 'x-client-key', 'x-client-token', 'x-client-secret', 'Authorization'],
     credentials: true // Allow credentials (cookies, authorization headers, etc.)
