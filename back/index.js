@@ -18,7 +18,13 @@ connectDatabase()
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+// CORS configuration
+app.use(cors({
+    origin: ['http://localhost:5173', 'https://electronic-vert.vercel.app'], // Allow requests from these origins
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Origin', 'X-Requested-With', 'Accept', 'x-client-key', 'x-client-token', 'x-client-secret', 'Authorization'],
+    credentials: true // Allow credentials (cookies, authorization headers, etc.)
+}))
 
 //Routes
 app.use('/api/products', productRoutes)
@@ -32,6 +38,11 @@ app.use('/api/users', userRoutes);
 app.get('/', (req, res) => {
     res.send('Api is running...')
 })
+
+app.get('/fausseRoute', (req, res) => {
+    res.send('juste pour voir si ça marche...')
+})
+
 
 const port = 3001
 app.listen(port, () => {
