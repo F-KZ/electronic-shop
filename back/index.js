@@ -4,15 +4,15 @@ import cors from 'cors'
 import dotenv from 'dotenv'
 import productRoutes from "./routes/productRoutes.js";
 import userRoutes from "./routes/usersRoutes.js";
-import path from 'path'
-import { fileURLToPath } from 'url';
+//import path from 'path'
+//import { fileURLToPath } from 'url';
 
 // __filename and __dirname equivalents for ESM
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+//const __filename = fileURLToPath(import.meta.url);
+//const __dirname = path.dirname(__filename);
 
 // Load environment variables from .env file located at project root
-dotenv.config({ path: path.resolve(__dirname, '../.env') });
+dotenv.config(/*{ path: path.resolve(__dirname, '../.env') }*/);
 
 connectDatabase()
 const app = express();
