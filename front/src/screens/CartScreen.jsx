@@ -49,7 +49,7 @@ const CartScreen = () => {
           <>
             <div className="space-y-4">
               {cartItems.map((item) => (
-                <div key={item._id} className="bg-white p-4 rounded-lg shadow-md flex items-center justify-between">
+                <div key={item._id} className="bg-white lg:p-4 rounded-lg shadow-md flex items-center justify-between">
                   <div className="w-1/5">
                     <img src={item.image} alt={item.name} className="w-full h-auto rounded-lg" />
                   </div>
@@ -77,7 +77,7 @@ const CartScreen = () => {
                   <div className="w-1/5 text-right">
                     <button
                       className="text-red-600 hover:text-red-800"
-                      onClick={() => removeFromCartHandler(item._id)}
+                      onClick={() => removeFromCartHandler(item)}
                     >
                       <FaTrash/>
                     </button>
