@@ -10,6 +10,8 @@ import LoginScreen from './screens/LoginScreen';
 import { Container } from 'react-bootstrap';
 import './assets/styles/bootstrap.custom.css';
 import './assets/styles/index.css';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
 
 
@@ -19,8 +21,9 @@ function App() {
 
   return (
     <BrowserRouter>
+    <ToastContainer />
      <Header/>
-    <div className='flex flex-col gap-6 items-center'>
+    <div className='flex flex-col gap-6 items-center min-h-[80vh]'>
      <Container className='p-8'>
     <Routes>
      <Route path="/" element={<HomeScreen/>} />

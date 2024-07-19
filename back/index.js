@@ -4,6 +4,7 @@ import cors from 'cors'
 import dotenv from 'dotenv'
 import productRoutes from "./routes/productRoutes.js";
 import userRoutes from "./routes/usersRoutes.js";
+import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 //import path from 'path'
 //import { fileURLToPath } from 'url';
 const app = express();
@@ -43,6 +44,9 @@ app.get('/fausseRoute', (req, res) => {
     res.send(`le mot magique est ${process.env.TOKEN_SECRET}...`)
 })
 
+
+app.use(notFound);
+app.use(errorHandler);
 
 const port = 3001
 app.listen(port, () => {

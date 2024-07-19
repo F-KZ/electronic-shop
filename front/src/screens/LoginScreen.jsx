@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../components/Loader/Loader';
+import { Form, Button, Row, Col } from 'react-bootstrap';
 import FormContainer from '../components/FormContainer';
 import { useLoginMutation } from '../slices/usersApiSlice';
 import { setCredentials } from '../slices/authSlice';
@@ -41,53 +42,44 @@ const LoginScreen = () => {
 
   return (
     <FormContainer>
-      <h1 className="text-2xl font-bold mb-4">Sign In</h1>
-      <form onSubmit={submitHandler}>
-        <div className="mb-4">
-          <label htmlFor="email" className="block text-gray-700 text-sm font-bold mb-2">
-            Email Address
-          </label>
-          <input
-            type="email"
-            id="email"
-            placeholder="Enter email"
+      <h1>Sign In</h1>
+
+      <Form onSubmit={submitHandler}>
+        <Form.Group className='my-2' controlId='email'>
+          <Form.Label>Email Address</Form.Label>
+          <Form.Control
+            type='email'
+            placeholder='Enter email'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          />
-        </div>
-        <div className="mb-6">
-          <label htmlFor="password" className="block text-gray-700 text-sm font-bold mb-2">
-            Password
-          </label>
-          <input
-            type="password"
-            id="password"
-            placeholder="Enter password"
+          ></Form.Control>
+        </Form.Group>
+
+        <Form.Group className='my-2' controlId='password'>
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            type='password'
+            placeholder='Enter password'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-          />
-        </div>
-        <div className="flex items-center justify-between">
-          <button
-            disabled={isLoading}
-            type="submit"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-          >
-            Sign In
-          </button>
-        </div>
+          ></Form.Control>
+        </Form.Group>
+
+        <Button disabled={isLoading} type='submit' variant='primary'>
+          Sign In
+        </Button>
+
         {isLoading && <Loader />}
-      </form>
-      <div className="py-3">
-        <p className="text-sm">
+      </Form>
+
+      <Row className='py-3'>
+        <Col>
           New Customer?{' '}
-          <Link to={redirect ? `/register?redirect=${redirect}` : '/register'} className="text-blue-500 hover:text-blue-700">
+          <Link to={redirect ? `/register?redirect=${redirect}` : '/register'}>
             Register
           </Link>
-        </p>
-      </div>
+        </Col>
+      </Row>
     </FormContainer>
   );
 };

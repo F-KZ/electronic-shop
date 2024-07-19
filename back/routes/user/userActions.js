@@ -73,7 +73,7 @@ const validateEmail = (email) => {
     });
   } else {
     res.status(401);
-    throw new Error('Invalid email or password');
+    throw new Error( `msg : Invalid email or password`);
   }
   });
   
