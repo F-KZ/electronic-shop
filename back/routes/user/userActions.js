@@ -1,6 +1,7 @@
 import asyncHandler from "express-async-handler"
 import User from "../../models/userModel.js";
 import generateToken from "../../middleware/genToken.js";
+import bcrypt from 'bcryptjs'
 
 
 // Email validation function
@@ -33,29 +34,35 @@ const validateEmail = (email) => {
         return res.status(400).json({ msg: "User already exists with this email" });
       }
   
+      // Hash password
+      const hashedPassword = await bcrypt.hash(password, 10);
+  
       // Create new user
       const newUser = new User({
         name,
         email,
-        password
+        password: hashedPassword,
       });
   
       // Save user
       const user = await newUser.save();
   
-      // Return response with user data and token
+      // Set token as an HTTP-only cookie
+      generateToken(res, user._id);
+  
+      // Return response with user data
       res.status(201).json({
         _id: user._id,
         name: user.name,
         email: user.email,
         isAdmin: user.isAdmin,
-        token: generateToken(user._id),
       });
     } catch (error) {
-      console.error(error);
+      console.error(`Error during user registration: ${error.message}`);
       res.status(500).json({ msg: 'Could not register user' });
     }
   });
+  
 
   const login = asyncHandler(async (req, res) => {
     const { email, password } = req.body;

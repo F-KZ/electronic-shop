@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Nav,NavDropdown } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { FaShoppingCart, FaUser, FaHome } from 'react-icons/fa';
@@ -43,19 +44,21 @@ const Header = () => {
               )}
             </Link>
             {userInfo ? (
-              <>
-                <Link to="/profile" className="text-gray-900 hover:text-gray-600 flex flex-row gap-2 items-center">
-                  {userInfo.name} <FaUser />
-                </Link>
-                <button onClick={logoutHandler} className="text-gray-900 hover:text-gray-600">
-                  Log Out
-                </button>
-              </>
-            ) : (
-              <Link to="/login" className="text-gray-900 hover:text-gray-600 flex flex-row gap-2 items-center">
-                Sign In <FaUser />
-              </Link>
-            )}
+                <>
+                  <NavDropdown title={userInfo.name} id='username'>
+                    <NavDropdown.Item as={Link} to='/profile'>
+                      Profile
+                    </NavDropdown.Item>
+                    <NavDropdown.Item onClick={logoutHandler}>
+                      Logout
+                    </NavDropdown.Item>
+                  </NavDropdown>
+                </>
+              ) : (
+                <Nav.Link className='flex flex-row-reverse items-center gap-2 ' as={Link} to='/login'>
+                  <FaUser /> Sign In
+                </Nav.Link>
+              )}
             <Link to="/" className="text-gray-900 hover:text-gray-600">
               Contact
             </Link>
