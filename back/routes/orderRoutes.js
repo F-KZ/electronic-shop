@@ -1,6 +1,6 @@
 import express from 'express'
-import { addOrderItems, getMyOrders, updateOrderToDelivered, updateOrderToPaid, getOrderById, getOrders } from './order/orderAction';
-import { authenticateToken } from '../middleware/authToken';
+import { addOrderItems, getMyOrders, updateOrderToDelivered, updateOrderToPaid, getOrderById, getOrders } from './order/orderAction.js';
+import { authenticateToken } from '../middleware/authToken.js';
 
 const orderRoutes = express.Router()
 
