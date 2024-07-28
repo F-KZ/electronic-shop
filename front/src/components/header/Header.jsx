@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Nav,NavDropdown } from 'react-bootstrap';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { FaShoppingCart, FaUser, FaHome } from 'react-icons/fa';
 import { logout } from '../../slices/authSlice';
 import ResponsiveMobile from './ResponsiveMobile';
@@ -12,6 +12,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const { cartItems } = useSelector((state) => state.cart);
   const { userInfo } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
   
 
   const toggleMenu = () => {
@@ -20,6 +21,7 @@ const Header = () => {
 
   const logoutHandler = () => {
     dispatch(logout());
+    navigate('/');
   };
 
   return (

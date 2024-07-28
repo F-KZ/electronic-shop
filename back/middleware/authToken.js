@@ -1,33 +1,34 @@
-const authenticateToken = async (req, res, next) => {
-    const authHeader = req.headers.authorization;
-    const token = authHeader && authHeader.split(' ')[1];
+import jwt from 'jsonwebtoken';
+import User from '../models/userModel.js';
+import asyncHandler from "express-async-handler"
 
-    if (!token) return res.sendStatus(401); // No token provided
-
-    jwt.verify(token, process.env.TOKEN_SECRET, async (err, user) => {
-        if (err) return res.sendStatus(403); // Invalid token
-
-        try {
-            const findUser = await User.findById(user.id).select('-password');
-            if (!findUser) {
-                return res.status(404).send("on te connait pas"); // User not found
-            }
-
-            req.user = {
-                id: findUser._id,
-                name: findUser.name,
-                email: findUser.email,
-            };
-
-            next();
-        } catch (err) {
-            console.error(err);
-            return res.sendStatus(500); // Server error
-        }
-    });
-};
-
-const admin = (req, res, next) => {
+const authenticateToken = asyncHandler(async (req, res, next) => {
+    let token;
+  
+    // Read JWT from the 'jwt' cookie
+    token = req.cookies.jwt;
+    console.log(`Cookie :`, token);
+  
+    if (token) {
+      try {
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+  
+        req.user = await User.findById(decoded.userId).select('-password');
+  
+        next();
+      } catch (error) {
+        console.error(error);
+        res.status(401);
+        throw new Error('Not authorized, token failed');
+      }
+    } else {
+      res.status(401);
+      throw new Error('Not authorized, no token');
+    }
+  });
+  
+  // User must be an admin
+  const admin = (req, res, next) => {
     if (req.user && req.user.isAdmin) {
       next();
     } else {
@@ -35,5 +36,4 @@ const admin = (req, res, next) => {
       throw new Error('Not authorized as an admin');
     }
   };
-
 export { authenticateToken, admin };
