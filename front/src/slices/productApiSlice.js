@@ -9,8 +9,6 @@ const ProductApiSlice = apiSlice.injectEndpoints({
        getProducts: builder.query({
       query: ({ keyword, pageNumber }) => ({
         url: PRODUCTS_URL,
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
         params: { keyword, pageNumber },
       }),
       keepUnusedDataFor: 5,
