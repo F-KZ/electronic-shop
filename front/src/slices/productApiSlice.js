@@ -17,15 +17,11 @@ const ProductApiSlice = apiSlice.injectEndpoints({
         getProductDetails : builder.query({
             query : (productId) => ({
                 url : `${PRODUCTS_URL}/${productId}`,
-                headers: { "Content-Type": "application/json" },
-                credentials: "include",
             }),
             keepUnusedDataFor : 5
         }),
         getTopProducts: builder.query({
       query: () => `${PRODUCTS_URL}/top`,
-      headers: { "Content-Type": "application/json" },
-      credentials: "include",
       keepUnusedDataFor: 5,
     }),
 
