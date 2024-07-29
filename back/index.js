@@ -23,7 +23,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser()); 
 // CORS configuration
-const allowedOrigins = ['https://electronic-shop-back.vercel.app', 'http://localhost:5173'];
+
+const allowedOrigins = [
+  'https://electronic-shop-back.vercel.app',
+  'http://localhost:5173',
+  'https://electronic-shop-front.vercel.app'
+];
 
 const corsOptions = {
   origin: function (origin, callback) {
@@ -39,6 +44,9 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+
+// Handle preflight requests for all routes
+app.options('*', cors(corsOptions));
 //Routes
 app.use('/api/products', productRoutes)
 app.use('/api/users', userRoutes);
