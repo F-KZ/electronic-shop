@@ -6,6 +6,7 @@ import { FaShoppingCart, FaUser, FaHome } from 'react-icons/fa';
 import { logout } from '../../slices/authSlice';
 import ResponsiveMobile from './ResponsiveMobile';
 import logo from '../../../public/images/logo.svg'
+import { resetCart } from '../../slices/cartSlice';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,6 +22,7 @@ const Header = () => {
 
   const logoutHandler = () => {
     dispatch(logout());
+    dispatch(resetCart())
     navigate('/');
   };
 

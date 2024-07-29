@@ -23,8 +23,19 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser()); 
 // CORS configuration
-// const allowedOrigins = ['http://localhost:3001', 'http://localhost:5173', "https://electronic-shop-back.vercel.app" ];
-app.use(cors());
+const allowedOrigins = ['https://electronic-shop-back.vercel.app', 'http://localhost:5173'];
+app.use(cors({
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = `The CORS policy for this site does not allow access from the specified Origin: ${origin}`;
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
+  credentials: true, // Allow cookies and credentials to be sent
+}));
 
 //Routes
 app.use('/api/products', productRoutes)
