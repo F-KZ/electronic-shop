@@ -25,7 +25,7 @@ app.use(cookieParser());
 // CORS configuration
 
 const allowedOrigins = [
-  'https://electronic-shop-back.vercel.app',
+  'https://project3-back.vercel.app',
   'http://localhost:5173',
   'https://electronic-shop-front.vercel.app'
 ];
