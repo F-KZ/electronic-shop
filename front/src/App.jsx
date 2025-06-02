@@ -19,6 +19,7 @@ import PaymentScreen from './components/PaymentScreen'
 import PlaceOrderScreen from './screens/PlaceOrderScreen';
 import OrderScreen from './screens/OrderScreen';
 import CategoryScreen from './screens/CategoryScreen';
+import ContactScreen from './screens/ContactScreen';
 
 
 
@@ -38,6 +39,7 @@ function App() {
      <Route path="/login" element={<LoginScreen/>} />
      <Route path="/register" element={<RegisterScreen/>} />
      <Route path="/category/:category" element={<CategoryScreen/>} />
+     <Route path="/contact" element={<ContactScreen/>} />
      <Route path="" element={<PrivateRoute/>}>
      <Route path="/shipping" element={<ShippingScreen/>} />
      <Route path="/payment" element={<PaymentScreen/>} />

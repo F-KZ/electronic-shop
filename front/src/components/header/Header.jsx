@@ -93,7 +93,7 @@ const Header = () => {
                   <FaUser /> Sign In
                 </Nav.Link>
               )}
-            <Link to="/" className="text-gray-900 hover:text-gray-600">
+            <Link to="/contact" className="text-gray-900 hover:text-gray-600">
               Contact
             </Link>
           </div>
