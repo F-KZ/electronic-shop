@@ -18,6 +18,7 @@ import PrivateRoute from './components/PrivateRoute';
 import PaymentScreen from './components/PaymentScreen'
 import PlaceOrderScreen from './screens/PlaceOrderScreen';
 import OrderScreen from './screens/OrderScreen';
+import CategoryScreen from './screens/CategoryScreen';
 
 
 
@@ -28,7 +29,7 @@ function App() {
     <BrowserRouter>
     <ToastContainer />
      <Header/>
-    <div className='flex flex-col gap-6 items-center min-h-[80vh]'>
+    <div className='flex flex-col gap-6 items-center min-h-[80vh] pt-[200px]'>
      <Container className='p-8'>
     <Routes>
      <Route path="/" element={<HomeScreen/>} />
@@ -36,6 +37,7 @@ function App() {
      <Route path="/cart" element={<CartScreen/>} />
      <Route path="/login" element={<LoginScreen/>} />
      <Route path="/register" element={<RegisterScreen/>} />
+     <Route path="/category/:category" element={<CategoryScreen/>} />
      <Route path="" element={<PrivateRoute/>}>
      <Route path="/shipping" element={<ShippingScreen/>} />
      <Route path="/payment" element={<PaymentScreen/>} />
