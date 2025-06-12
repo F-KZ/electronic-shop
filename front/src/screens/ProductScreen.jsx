@@ -63,7 +63,7 @@ const ProductScreen = () => {
             </div>
             {product.countInStock > 0 && (
         <div className="border p-4 rounded-lg shadow-lg">
-          <div className="flex justify-between items-center mb-4">
+          <div className="flex justify-between items-center mb-4 gap-4">
             <span className="font-bold">Qty</span>
             <select
               value={qty}
